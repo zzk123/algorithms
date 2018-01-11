@@ -12,9 +12,9 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class EdgeWeightedDigraph{
 	
-	private final int V;
-	private int E;
-	private Bag<DirectedEdge>[] adj;
+	private final int V;			//顶点总数
+	private int E;					//边的总数
+	private Bag<DirectedEdge>[] adj;//邻接表
 	private int[] indegree;
 	
 	public EdgeWeightedDigraph(int V){
