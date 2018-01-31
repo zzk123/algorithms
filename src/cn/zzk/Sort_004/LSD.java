@@ -15,11 +15,13 @@ public class LSD {
 			//根据第d个字符用键索引
 			int[] count = new int[R+1];
 			for(int i = 0; i < N; i++) {
+				System.out.println(a[i]+":"+d+":"+a[i].charAt(d));
 				count[a[i].charAt(d)+1]++;
 			}
 			//将频率转换为索引
 			for(int r = 0; r < R; r++) {
 				count[r+1] += count[r];
+				System.out.println((r+1)+":"+count[r+1]);
 			}
 			//将元素分类
 			for(int i = 0; i < N; i++) {
@@ -30,5 +32,12 @@ public class LSD {
 				a[i] = aux[i];
 			}
 		}
+	}
+	public static void main(String[] args) {
+		String a[] = new String[] {
+				"4PGC938","2IYE230","3CIO720","1ICK750",
+				"10HV845","4JZY524","1ICK750","3CIO720",
+				"10HV845","2RLA629","3ATW723"};
+		sort(a, 7);
 	}
 }

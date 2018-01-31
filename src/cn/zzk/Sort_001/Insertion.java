@@ -27,4 +27,9 @@ public class Insertion extends BaseSort{
 			}
 		}
 	}
+
+	public static void sort(String[] a, int lo, int hi, int d) {
+		// TODO Auto-generated method stub
+		
+	}
 }
