@@ -10,8 +10,8 @@ public class MSD {
 	
 	private static final int BITS_PER_BYTE = 8;
 	private static final int BITS_PER_INT = 32;
-	private static final int R = 256;
-	private static final int CUTOFF = 15;
+	private static final int R = 256;				//基数
+	private static final int CUTOFF = 15;			//小数组的切换阈值
 	
 	private MSD() { }
 	
@@ -29,31 +29,32 @@ public class MSD {
 	}
 	
 	private static void sort(String[] a, int lo, int hi, int d, String[] aux) {
-		
+		//以第d个字符为键将a[lo]至a[hi]排序
 		if(hi <= lo + CUTOFF) {
 			insertion(a, lo, hi, d);
 			return ;
 		}
 		
-		int[] count = new int[R+2];
+		int[] count = new int[R+2];		//计算频率
 		for(int i = lo; i <= hi; i++) {
 			int c = charAt(a[i], d);
 			count[c+2]++;
 		}
 		
-		for(int r = 0; r < R+1; r++) {
+		for(int r = 0; r < R+1; r++) {	//将频率转换成索引
 			count[r+1] += count[r];
 		}
 		
-		for(int i = lo; i <= hi; i++) {
+		for(int i = lo; i <= hi; i++) {	//数据分类
 			int c = charAt(a[i], d);
 			aux[count[c+1]++] = a[i];
 		}
 		
-		for(int i = lo; i <= hi; i++) {
+		for(int i = lo; i <= hi; i++) {	//回写
 			a[i] = aux[i - lo];
 		}
 		
+		//递归的以每个字符为键进行排序
 		for(int r = 0; r < R; r++) {
 			sort(a, lo + count[r], lo + count[r+1] - 1, d+1, aux);
 		}
