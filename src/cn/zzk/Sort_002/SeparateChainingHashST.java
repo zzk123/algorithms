@@ -33,7 +33,7 @@ public class SeparateChainingHashST<Key, Value> {
 	public Value get(Key key){
 		return (Value)st[hash(key)].get(key);
 	}
-	
+	//添加元素
 	public void put(Key key, Value val){
 		 if (key == null) throw new IllegalArgumentException("first argument to put() is null");
          if (val == null) {
@@ -72,6 +72,7 @@ public class SeparateChainingHashST<Key, Value> {
 		if(M > INIT_CAPACITY && N <= 2*M)
 			resize(M/2);
 	}
+	//改变数组长度
 	private void resize(int chains){
 		SeparateChainingHashST<Key, Value> temp = new SeparateChainingHashST<Key, Value>(chains);
 		for(int i = 0; i < M; i++){
@@ -82,7 +83,6 @@ public class SeparateChainingHashST<Key, Value> {
 		this.M = temp.M;
 		this.N = temp.N;
 		this.st = temp.st;
-				
 	}
 	
 }
